@@ -25,7 +25,11 @@ public unsafe abstract class CodePatcher
         BackupHeader();
         EnableAddrModifiable();
         PatchTargetMethod();
-        PatchProxyMethod();
+        // 有一种场景是只需要 hook，不需要调用原函数，增加对 ProxyMethod 的判断，保证不保存原有函数的情况下也可以继续使用，
+        if (_pProxy != null)
+        {
+            PatchProxyMethod();
+        }
     }
 
     public void RemovePatch()

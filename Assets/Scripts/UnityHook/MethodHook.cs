@@ -240,7 +240,7 @@ public unsafe class MethodHook
         if (_proxyMethod != null)
             _proxyPtr = GetFunctionAddr(_proxyMethod);
 
-        if (_targetPtr == IntPtr.Zero || _proxyPtr == IntPtr.Zero)
+        if (_targetPtr == IntPtr.Zero || _replacementPtr == IntPtr.Zero)
             return false;
 
         if(LDasm.IsThumb(_targetPtr) || LDasm.IsThumb(_replacementPtr))
